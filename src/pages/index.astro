@@ -3,7 +3,6 @@
 const companyName = "RB Plumbing and Heating";
 const phoneNumber = "07771924736";
 const email = "rbplumbingheatingservices@gmail.com";
-const currentYear = new Date().getFullYear();
 ---
 
 <html lang="en">
@@ -80,26 +79,7 @@ const currentYear = new Date().getFullYear();
 				</div>
 			</div>
 
-			<div class="copyright">
-				<p>&copy; <span id="current-year">{currentYear}</span> {companyName}. All rights reserved.</p>
-			</div>
 		</div>
-
-		<script is:inline>
-			// Update year dynamically on client-side
-			(function() {
-				// Prevent scroll restoration
-				if ('scrollRestoration' in history) {
-					history.scrollRestoration = 'manual';
-				}
-				
-				// Update year
-				const yearElement = document.getElementById('current-year');
-				if (yearElement) {
-					yearElement.textContent = new Date().getFullYear().toString();
-				}
-			})();
-		</script>
 	</body>
 </html>
 
@@ -114,6 +94,7 @@ const currentYear = new Date().getFullYear();
 		height: 100%;
 		overflow-x: hidden;
 		-webkit-overflow-scrolling: touch;
+		overscroll-behavior-y: none;
 	}
 
 	body {
@@ -122,10 +103,13 @@ const currentYear = new Date().getFullYear();
 		font-family: 'Roboto', Arial, sans-serif;
 		line-height: 1.6;
 		padding: 20px;
-		min-height: 100%;
+		min-height: 100vh;
 		overflow-x: hidden;
+		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 		position: relative;
+		overscroll-behavior-y: none;
+		touch-action: pan-y;
 	}
 
 	.container {
@@ -212,14 +196,6 @@ const currentYear = new Date().getFullYear();
 		background-color: rgba(255, 255, 255, 0.1);
 	}
 
-	.copyright {
-		text-align: center;
-		padding: 1.5rem 0;
-		margin-top: 2rem;
-		border-top: 1px solid rgba(255, 255, 255, 0.2);
-		font-size: 0.9rem;
-		color: rgba(255, 255, 255, 0.7);
-	}
 
 	.offset-animate {
 		animation: stroke-dashoffset 10s infinite;
@@ -265,11 +241,6 @@ const currentYear = new Date().getFullYear();
 
 		.contact-links a {
 			font-size: 1rem;
-		}
-
-		.copyright {
-			font-size: 0.85rem;
-			padding: 1rem 0;
 		}
 	}
 </style>
